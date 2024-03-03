@@ -74,11 +74,10 @@ local config = function()
 		},
 	})
 
-  lspconfig.clangd.setup({
+	lspconfig.clangd.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
-		settings = {
-		},
+		settings = {},
 	})
 	-- -- json
 	-- lspconfig.jsonls.setup({
@@ -104,22 +103,22 @@ local config = function()
 	-- 	},
 	-- })
 	lspconfig.pylsp.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+		capabilities = capabilities,
+		on_attach = on_attach,
 		settings = {
 			pylsp = {
 				plugins = {
 					pycodestyle = { enabled = false },
 					mccabe = { enabled = false },
 					pyflakes = { enabled = false },
-					flake8 = { enabled = false },
-          ruff = { enabled = true },
+					flake8 = { enabled = true },
+					-- ruff = { enabled = true },
 				},
 			},
 		},
 	})
 
-  lspconfig.ruff_lsp.setup{}
+	-- lspconfig.ruff_lsp.setup{}
 	-- lspconfig.pylsp.setup({
 	-- 	-- capabilities = capabilities,
 	-- 	-- on_attach = on_attach,
@@ -174,6 +173,22 @@ local config = function()
 		},
 		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
 	})
+
+	-- Vue language options (volar)
+
+	lspconfig.volar.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+		filetypes = {
+			"typescript",
+			"javascript",
+			"javascriptreact",
+			"typescriptreact",
+			"vue",
+			"json",
+		},
+	})
+
 	--
 	-- 	-- bash
 	-- 	lspconfig.bashls.setup({
